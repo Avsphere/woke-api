@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .titleBlock(style="text-align:center;margin-top:5%")
+    h1 Data Galore
+    h5 A sample of the data collected Average Size: ~4500. Less than 5 years published, over 500 characters body length.
+  .container(style="text-align:center;margin-top:5%")
+    ul.list-group
+      each file in fileNames
+        li.list-group-item 
+          a(href='#' data-fileName=file) #{file}
