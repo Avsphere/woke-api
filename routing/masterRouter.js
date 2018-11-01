@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path')
-const jsonFile = require('jsonFile')
+const jsonFile = require('jsonfile')
 const fs = require('fs')
 const consumptionFolder = './data/vaneerConsumption/';
 
