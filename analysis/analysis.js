@@ -41,7 +41,6 @@ const grabData = (fileNames, max) => {
   })
 }
 
-
 const fileNames = () => {
   return new Promise( (resolve, reject) => {
     fs.readdir(config.dataDir, (err, files) => {
@@ -78,15 +77,21 @@ const collect = () => {
     .catch(reject)
   })
 }
+//using bodies top 5 and title ... still kind of shitty
+const topicAnalysis = async (filteredData, clusters, topics) => {
+  const buildTokenCollection = (nBodyTokens) => {
+      return filteredData.map( d => {
+      let title = tokenizer.tokenize(d.title)
+      let body = tokenizer.tokenize(d.text)
 
-//tokensCollection = [ [tokens], [tokens], ... ]
-const topicAnalysis = async (tokensCollection, clusters, topics) => {
-  const tokenCounts = [];
-  tokensCollection.splice(500).forEach( collection => {
-    tokenCounts.push( mostFrequentTokens(collection, 10) )
+      body = stopWords.removeStopwords(body).filter(t => t.length > 3);
+      title = stopWords.removeStopwords(title).filter(t => t.length > 3)
+      let topBodyTokens = mostFrequentTokens(body, nBodyTokens, true);
+      let tokensForTopicAnalysis = title.concat(topBodyTokens).join(' ')
+      return tokensForTopicAnalysis;
   })
-  const topicTokens = tokenCounts.map( counts => counts.map( ([token, freq]) => token).join(' ') )
-  return lda(topicTokens, clusters, topics);
+}
+  return lda(buildTokenCollection(5), clusters, topics)
 }
 
 const parseText = (documents, removeStops) => {
@@ -98,7 +103,7 @@ const parseText = (documents, removeStops) => {
   return parsedData
 }
 
-const mostFrequentTokens = (tokens, n ) => {
+const mostFrequentTokens = (tokens, n, justTokens ) => {
   if ( n > tokens.length ) { n = tokens.length-1; }
   const freq = {}
   const tupelized = []
@@ -109,23 +114,21 @@ const mostFrequentTokens = (tokens, n ) => {
   for ( const f in freq ) {
     tupelized.push([f, freq[f] ])
   }
-  return tupelized.sort( (a ,b) => b[1] - a[1]).splice(0, n)
+  tupelized.sort( (a ,b) => b[1] - a[1])
+  if ( justTokens ) {
+    return tupelized.map( tuple => tuple[0] ).splice(0,n);
+  }
+  return tupelized.splice(0, n)
 }
-
-
-
-
 
 const masterCommander = async (params) => {
   config = params;
   data = await collect()
   const filteredData = applyFilters()
-  const documents = filteredData.map(d => d.text);
-  const tokensCollection = parseText(documents, true)
-  const topics = await topicAnalysis(tokensCollection, 4 , 1)
+  const topics = await topicAnalysis(filteredData, 10 , 1)
   console.log(topics)
 
-  await clearDir(config.saveDir)
+  // await clearDir(config.saveDir)
 }
 
 masterCommander({
