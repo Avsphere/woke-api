@@ -8,6 +8,8 @@ const lda = require('lda')
 const natural = require('natural')
 const tokenizer = new natural.WordTokenizer();
 const stopWords = require('stopword')
+const flat = require('flat')
+
 const politicalVocabPath = './data/politicalVocab.json'
 const goldDir = './data/gold'
 /*
@@ -39,7 +41,6 @@ The current method in use:
 
 const mapImportance = async () => {
   const politicalVocab = await jsonFile.readFile(politicalVocabPath)
-
   return {
     words : politicalVocab.words.map( w => {
       return { [w] : 1 }
@@ -51,22 +52,50 @@ const mapImportance = async () => {
       return { [w] : 3 }
     }),
     powerfulPeoples : politicalVocab.powerfulPeoples.map( w => {
-      return { [w] : 3 }
+      return { [w] : 5 }
+    }),
+    organizations : politicalVocab.organizations.map( w => {
+      return { [w] : 4 }
     })
   }
+}
 
+
+const politicalVocabFixer = async() => {
+  const politicalVocab = await jsonFile.readFile(politicalVocabPath)
+  politicalVocab.words = politicalVocab.words.map
 }
 
 
 const topicAnalysis = async (filteredData) => {
+  const rankDocs = (vocabRankings) => {
+    const ranked = filteredData.map( d => {
+      const tokenize = (text) => {
+        text = d.text.toLowerCase()
+        const tokens = tokenizer.tokenize(text);
+        return tokens.filter( t => t.length > 3 );
+      }
+      const computeScore = (tokens) => {
+
+      }
+      const tokens = tokenize(d.text);
+      const bigrams = natural.NGrams.bigrams(tokens);
+
+
+      console.log(ngrams);
+
+    })
+  }
   const mappedVocab = await mapImportance()
-  console.log(mappedVocab)
+  rankDocs(mappedVocab)
+  return true;
 }
 
 const run = async() => {
   const data = await helpers.collect(goldDir)
-  topicAnalysis(data)
-  console.log(data)
+  const sampleSet = data.splice(0,3);
+  topicAnalysis(sampleSet)
+  console.log(sampleSet)
 }
 
 run();
