@@ -32,11 +32,14 @@
     "express": "^4.16.3",
     "jquery": "^3.3.1",
     "jsonfile": "^5.0.0",
+    "lda": "^0.2.0",
     "moment": "^2.22.2",
     "mongoose": "^5.2.10",
     "morgan": "^1.9.0",
+    "natural": "^0.6.2",
     "popper.js": "^1.14.4",
     "pug": "^2.0.3",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "stopword": "^0.1.13"
   }
 }

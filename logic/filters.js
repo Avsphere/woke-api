@@ -10,4 +10,8 @@ filters.filterDate = (maxYears) => (datas) => datas.filter( ({date_publish}) => 
 
 filters.filterSize = (minSize) => (datas) => datas.filter( d => d.text && d.text.length > minSize )
 
+filters.hasTitle = (datas) => datas.filter( d => d.hasOwnProperty('title') && d.title.length > 5 )
+filters.hasImageUrl = (datas) => datas.filter(d => d.hasOwnProperty('image_url') && d.image_url.length > 10 )
+
+
 module.exports = filters;
