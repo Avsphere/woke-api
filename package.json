@@ -17,7 +17,6 @@
     "babel-preset-env": "^1.7.0",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
-    "flat": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.2",
     "nodemon": "^1.18.5",
     "style-loader": "^0.22.1",

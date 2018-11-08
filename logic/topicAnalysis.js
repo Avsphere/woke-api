@@ -8,9 +8,8 @@ const lda = require('lda')
 const natural = require('natural')
 const tokenizer = new natural.WordTokenizer();
 const stopWords = require('stopword')
-const flat = require('flat')
 
-const politicalVocabPath = './data/politicalVocab.json'
+const politicalVocabPath = './logic/metaData/politicalVocab.json'
 const goldDir = './data/gold'
 /*
 The current method in use:
@@ -39,66 +38,125 @@ The current method in use:
 //   return lda(buildTokenCollection(5), clusters, topics)
 // }
 
-const mapImportance = async () => {
-  const politicalVocab = await jsonFile.readFile(politicalVocabPath)
+
+/*
+  This is a curried approach to tracking the important of the political words
+  Leading to adjustment in the word important
+  ie if trump scores highly across many documents then the importance is validated
+
+*/
+
+const importanceReferee = (mappedPoliticalWords) => {
+  const scoreDict = {}
+  for ( const key in mappedPoliticalWords ) {
+    scoreDict[key] = 0;
+  }
   return {
-    words : politicalVocab.words.map( w => {
-      return { [w] : 1 }
-    }),
-    senateMembers : politicalVocab.senateMembers.map( w => {
-      return { [w] : 3 }
-    }),
-    houseMembers : politicalVocab.houseMembers.map( w => {
-      return { [w] : 3 }
-    }),
-    powerfulPeoples : politicalVocab.powerfulPeoples.map( w => {
-      return { [w] : 5 }
-    }),
-    organizations : politicalVocab.organizations.map( w => {
-      return { [w] : 4 }
-    })
+    increment : (word) => { scoreDict[word]++ },
+    get : (w) => scoreDict,
+    getSorted : (w) => {
+      const pairs = []
+      for ( const key in scoreDict ) {
+        pairs.push( [key, scoreDict[key] ] )
+      }
+      pairs.sort( (a,b) => b[1] - a[1] )
+      return pairs;
+    }
   }
 }
 
 
-const politicalVocabFixer = async() => {
+const mapImportance = async () => {
+  const troubleWords = ['will', 'moon']
   const politicalVocab = await jsonFile.readFile(politicalVocabPath)
-  politicalVocab.words = politicalVocab.words.map
+  //This function splits each set of words into a single word so i dont have to check n gram permutations ie the political phrase "Rubber and Chicken Circuit" becomes ['rubber', 'chicken', 'circuit']
+  const politicalVocabFixer = () => {
+    for ( const key in politicalVocab ) {
+      politicalVocab[key] = politicalVocab[key]
+      .map( w => w.toLowerCase().split(' ').filter( w => w.length > 3 && !troubleWords.includes(w) ) )
+      .reduce( (acc, el) => acc.concat(el), [])
+    }
+  }
+  const collectAllTerms = () => {
+    let terms = {}
+    politicalVocab.words.forEach( w => {
+      terms[w] = 2
+    })
+    politicalVocab.highWords.forEach( w => {
+      terms[w] = 4
+    })
+    politicalVocab.senateMembers.forEach( w => {
+      terms[w] = 3
+    })
+    politicalVocab.houseMembers.forEach( w => {
+      terms[w] = 3
+    })
+    politicalVocab.powerfulPeoples.forEach( w => {
+      terms[w] = 4
+    })
+    politicalVocab.organizations.forEach( w => {
+      terms[w] = 4
+    })
+    return terms;
+  }
+  politicalVocabFixer();
+  return collectAllTerms();
+}
+
+const testRef = async() => {
+  let mapped = await mapImportance()
+  let reff = importanceReferee(mapped);
+  reff.increment('fifa')
+  console.log(reff.get())
 }
 
 
 const topicAnalysis = async (filteredData) => {
-  const rankDocs = (vocabRankings) => {
-    const ranked = filteredData.map( d => {
+  const rankDocs = (mappedVocab, ref) => {
+    const scoredDocs = filteredData.map( d => {
       const tokenize = (text) => {
-        text = d.text.toLowerCase()
-        const tokens = tokenizer.tokenize(text);
+        const tokens = tokenizer.tokenize( text.toLowerCase() );
         return tokens.filter( t => t.length > 3 );
       }
-      const computeScore = (tokens) => {
+      const computeScores = (tokens) => tokens.map( t => {
+        if ( mappedVocab.hasOwnProperty(t) ) {
+          ref.increment(t);
+          return mappedVocab[t]
+        }
+        return 0;
+      }).reduce( (a,b) => a + b)
 
-      }
       const tokens = tokenize(d.text);
-      const bigrams = natural.NGrams.bigrams(tokens);
-
-
-      console.log(ngrams);
-
+      const rawScore = computeScores(tokens)
+      d.score = computeScores(tokens)
+      return d;
     })
+
+    const ranked = scoredDocs.sort( (a,b) => b.score - a.score )
+    return ranked;
   }
   const mappedVocab = await mapImportance()
-  rankDocs(mappedVocab)
-  return true;
+  const ref = importanceReferee(mappedVocab)
+  return {
+    rankedDocs : rankDocs(mappedVocab, ref),
+    ref : ref
+  }
 }
+
 
 const run = async() => {
   const data = await helpers.collect(goldDir)
-  const sampleSet = data.splice(0,3);
-  topicAnalysis(sampleSet)
-  console.log(sampleSet)
+  const sampleSet = data;
+  const results = await topicAnalysis(sampleSet)
+  results.rankedDocs.splice(0,50).forEach( doc => console.log(doc.title, ' : ', doc.score ) )
+  return results
 }
 
-run();
+run()
 
 
+
+
+
+// testRef();
 module.exports = topicAnalysis;
