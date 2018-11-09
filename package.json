@@ -39,6 +39,7 @@
     "natural": "^0.6.2",
     "popper.js": "^1.14.4",
     "pug": "^2.0.3",
+    "recursive-readdir": "^2.2.2",
     "serve-favicon": "^2.5.0",
     "stopword": "^0.1.13"
   }

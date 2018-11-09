@@ -6,19 +6,23 @@ const natural = require('natural')
 const tokenizer = new natural.WordTokenizer();
 const stopWords = require('stopword')
 const url = require('url')
+const recursiveRead = require('recursive-readdir')
 const helpers = {}
 
 
-const getFileNames = (directory) => {
+const getFileNames = (directory, recurse) => {
+  let readFn = fs.readdir;
   return new Promise( (resolve, reject) => {
-    fs.readdir(directory, (err, files) => {
+    if ( recurse ) { readFn = recursiveRead; }
+    readFn(directory, (err, files) => {
       if ( err) { reject(err) }
-      resolve(files.filter( f => f.includes('.json') ).map( f => path.join(directory, f) ))
+      const filteredFiles = files.filter( f => path.extname(f) == '.json' ).map( f => path.join(directory, f) )
+      resolve( filteredFiles )
     })
   })
 }
 const grabData = (fileNames, max) => {
-  if ( max ) { fileNames.splice(0, max); }
+  if ( max ) { fileNames = fileNames.splice(0, max); }
   return new Promise( (resolve, reject) => {
     if ( !max ) { max = fileNames.length-1; }
     Promise.all( fileNames.map( f => jsonFile.readFile(f) ) )
@@ -57,9 +61,6 @@ const saveData = (data, directory) => {
       let localpath = path.join(directory, filename)
       d.filename = filename;
       d.localpath = filename;
-      if ( filename.includes('10thingsyouneedtoknowinmarketstoday_0') ) {
-        console.log(d);
-      }
       promisedWrites.push( jsonFile.writeFile(localpath, d) )
     }
   })
@@ -74,17 +75,20 @@ helpers.attachPolarity = ( data, polarityData ) => {
       if ( polaritySource.includes(sourceDomain) ) { return true; }
       else { return false; }
     })
-    if ( !polarityScore ) { console.log("There is no polairty information for:", sourceDomain); }
+    if ( !polarityScore ) {
+      // console.log("There is no polairty information for:", sourceDomain);
+    }
 
-    d.polarityScore = polarityScore;
+
+    d.polarityScore = polarityScore || {};
   })
   return augmentedData;
 }
 
-helpers.collect = (directory, collectionSize) => {
+helpers.collect = (directory, recurse) => {
   return new Promise( (resolve, reject) => {
-    getFileNames(directory)
-    .then(f => grabData(f, collectionSize) )
+    getFileNames(directory, recurse)
+    .then(f => grabData(f) )
     .then(resolve)
     .catch(reject)
   })
@@ -107,7 +111,7 @@ helpers.parseText = (documents, removeStops) => {
   }
   return parsedData
 }
-
+helpers.getRandomInt = (max) => Math.floor( Math.random() * Math.floor(max) )
 helpers.mostFrequentTokens = (tokens, n, justTokens ) => {
   if ( n > tokens.length ) { n = tokens.length-1; }
   const freq = {}

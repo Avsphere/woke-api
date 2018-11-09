@@ -23,19 +23,19 @@ const articleSchema = mongoose.Schema({
     communityAgree : { type : String, required : false },
     communityDisagree : { type : String, required : false },
     sourceUrl : { type : String, required : false }
-  }
+  },
+  score : {},
+  topicScores : {}
 
 })
 
 
-
-articleSchema.pre('find', function(next)
-{
-    console.log("Request count", this.requestCount)
-    this.requestCount++;
-    console.log("Request count", this.requestCount);
-    next();
-});
+//track pull couunt in future?
+// articleSchema.pre('find', function(next)
+// {
+//     this.requestCount++;
+//     next();
+// });
 
 
 

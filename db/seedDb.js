@@ -36,7 +36,7 @@ const dropIndexes = (Model) => {
 const seed = () => {
   const savePromises = [];
   return new Promise( (resolve, reject) => {
-    helpers.collect( path.join(__dirname, '../data/gold') )
+    helpers.collect( path.join(__dirname, '../data/dbReady') )
     .then( data => data.map( d => new Article(d) ) )
     .then( articles => articles.map( a => a.save() ) )
     .then( saves => Promise.all(saves).then( s => resolve(true) ) )

@@ -2,10 +2,11 @@ extends layout
 
 block content
   .titleBlock(style="text-align:center;margin-top:5%")
-    h1 Data Galore
-    h5 A sample of the data collected Average Size: ~4500. Less than 5 years published, over 500 characters body length.
-  .container(style="text-align:center;margin-top:5%")
-    ul.list-group
-      each file in fileNames
-        li.list-group-item 
-          a(href='#' data-fileName=file) #{file}
+    h1 Woke-api
+    h5 Send a post to /getCollection with the following parameters:
+    p topic : [ trumpTopic, domesticTopic, worldTopic ]
+    p polarity : [ left, left-center, center, right, allSides] (may map numerically soon)
+    p collectionSize : size of returned documents, defaults to [1]
+    p title : title of document. Be aware that some documents have multiple titles
+    p **documents are sorted by date_publish
+    
