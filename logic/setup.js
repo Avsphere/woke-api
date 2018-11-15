@@ -8,11 +8,9 @@ const lda = require('lda')
 const natural = require('natural')
 const tokenizer = new natural.WordTokenizer();
 const stopWords = require('stopword')
-const topicAnalysis = require('./topicAnalysis')
 let data = {};
 
-//This just runs the filters and prepares the data for the topic topicAnalysis
-//The reason why this doesn't run sequentially is becasue the LDA needs to be hand pruned
+//This just runs the filters, prepares the data for the analysis /  saves the data to gold
 
 const applyFilters = (filterFns) => {
   let filteredData = data;
@@ -30,16 +28,13 @@ const saveGold = async (filteredData, saveDir) => {
 const siftTrash = async (config) => {
   try {
     console.log(`Beginning collection process ${Date()}`)
-    data = await helpers.collect(config.dataDir, true) //true means resursive collect
-    const filteredData = applyFilters(config.filters)
+    data = await helpers.collect(config.dataDir, true)
+    let filteredData = applyFilters(config.filters)
 
-    let polarityData = {}
+    let polarityData = await jsonFile.readFile(config.polarityFile);
+    filteredData = helpers.attachPolarity(filteredData, polarityData)
+
     console.log(`Filtered data. Old size: ${data.length}, new size ${filteredData.length}`)
-    if ( config.hasOwnProperty("polarityFile") ) {
-      polarityData = await jsonFile.readFile(config.polarityFile);
-      helpers.attachPolarity(filteredData, polarityData)
-    }
-    console.log("Setup complete!")
     return filteredData;
   } catch (e) {
     console.error("Ohhhhhhh fuck", e)
@@ -61,7 +56,7 @@ const config = {
   dataDir : '../jsonData/',
   saveDir : './data/gold',
   polarityFile : './logic/metaData/polarityData.json',
-  filters : [ filters.filterDate(3), filters.filterSize(200), filters.hasTitle, filters.hasImageUrl ]
+  filters : [ filters.filterDate(1), filters.filterSize(500), filters.hasTitle, filters.hasImageUrl ]
 }
 setup(config)
 .then( _ => console.log("all done!"))

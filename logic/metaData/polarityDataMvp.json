@@ -1,0 +1,489 @@
+[{
+    "sourceTitle": "ABC News",
+    "allSidesBias": "left-center",
+    "communityAgree": "7989",
+    "communityDisagree": "6473",
+    "sourceUrl": "http://abcnews.go.com/ "
+  }, {
+    "sourceTitle": "AllSides",
+    "allSidesBias": "allsides",
+    "communityAgree": "2441",
+    "communityDisagree": "1030",
+    "sourceUrl": "http://www.allsides.com "
+  }, {
+    "sourceTitle": "AlterNet",
+    "allSidesBias": "left",
+    "communityAgree": "1180",
+    "communityDisagree": "550",
+    "sourceUrl": "http://www.alternet.org/ "
+  }, {
+    "sourceTitle": "American Spectator",
+    "allSidesBias": "right",
+    "communityAgree": "4423",
+    "communityDisagree": "1845",
+    "sourceUrl": "http://spectator.org/ "
+  }, {
+    "sourceTitle": "American Thinker",
+    "allSidesBias": "right",
+    "communityAgree": "1036",
+    "communityDisagree": "600",
+    "sourceUrl": "http://www.americanthinker.com/ "
+  }, {
+    "sourceTitle": "Arkansas Democrat-Gazette",
+    "allSidesBias": "left",
+    "communityAgree": "661",
+    "communityDisagree": "518",
+    "sourceUrl": "http://www.arkansasonline.com/ "
+  }, {
+    "sourceTitle": "Associated Press",
+    "allSidesBias": "center",
+    "communityAgree": "4332",
+    "communityDisagree": "2989",
+    "sourceUrl": "http://www.ap.org/ "
+  }, {
+    "sourceTitle": "Atlanta Journal-Constitution",
+    "allSidesBias": "left-center",
+    "communityAgree": "536",
+    "communityDisagree": "562",
+    "sourceUrl": "http://www.ajc.com/ "
+  }, {
+    "sourceTitle": "Austin American-Statesman",
+    "allSidesBias": "left-center",
+    "communityAgree": "522",
+    "communityDisagree": "417",
+    "sourceUrl": "http://www.mystatesman.com/ "
+  }, {
+    "sourceTitle": "BBC News",
+    "allSidesBias": "center",
+    "communityAgree": "6888",
+    "communityDisagree": "6559",
+    "sourceUrl": "http://www.bbc.com/ "
+  }, {
+    "sourceTitle": "Bearing Drift",
+    "allSidesBias": "right",
+    "communityAgree": "414",
+    "communityDisagree": "373",
+    "sourceUrl": "http://www.bearingdrift.com "
+  }, {
+    "sourceTitle": "Bloomberg",
+    "allSidesBias": "center",
+    "communityAgree": "3803",
+    "communityDisagree": "4184",
+    "sourceUrl": "http://www.bloomberg.com/ "
+  }, {
+    "sourceTitle": "Blue Virginia",
+    "allSidesBias": "left",
+    "communityAgree": "523",
+    "communityDisagree": "404",
+    "sourceUrl": "http://www.bluevirginia.us "
+  }, {
+    "sourceTitle": "Boing Boing",
+    "allSidesBias": "left",
+    "communityAgree": "622",
+    "communityDisagree": "430",
+    "sourceUrl": "http://en.wikipedia.org/wiki/Boing_Boing, http://boingboing.net/ "
+  }, {
+    "sourceTitle": "Bowling Green Daily News",
+    "allSidesBias": "left-center",
+    "communityAgree": "419",
+    "communityDisagree": "443",
+    "sourceUrl": "http://www.bgdailynews.com/ "
+  }, {
+    "sourceTitle": "Breitbart News",
+    "allSidesBias": "right",
+    "communityAgree": "11085",
+    "communityDisagree": "6223",
+    "sourceUrl": "http://www.breitbart.com/ "
+  }, {
+    "sourceTitle": "Business Insider",
+    "allSidesBias": "center",
+    "communityAgree": "1409",
+    "communityDisagree": "1474",
+    "sourceUrl": "http://www.businessinsider.com/ "
+  }, {
+    "sourceTitle": "Bustle",
+    "allSidesBias": "left-center",
+    "communityAgree": "547",
+    "communityDisagree": "552",
+    "sourceUrl": "http://www.bustle.com/ "
+  }, {
+    "sourceTitle": "BuzzFeed News",
+    "allSidesBias": "left-center",
+    "communityAgree": "2838",
+    "communityDisagree": "3784",
+    "sourceUrl": "http://Buzzfeed.com "
+  }, {
+    "sourceTitle": "C-SPAN",
+    "allSidesBias": "center",
+    "communityAgree": "2082",
+    "communityDisagree": "654",
+    "sourceUrl": "http://www.c-span.org/ "
+  }, {
+    "sourceTitle": "CalMatters",
+    "allSidesBias": "center",
+    "communityAgree": "475",
+    "communityDisagree": "368",
+    "sourceUrl": "http://calmatters.org/ "
+  }, {
+    "sourceTitle": "CalWatchdog",
+    "allSidesBias": "center",
+    "communityAgree": "385",
+    "communityDisagree": "398",
+    "sourceUrl": "http://www.calwatchdog.com/ "
+  }, {
+    "sourceTitle": "Care 2",
+    "allSidesBias": "left",
+    "communityAgree": "419",
+    "communityDisagree": "440",
+    "sourceUrl": "http://www.care2.com "
+  }, {
+    "sourceTitle": "CBN",
+    "allSidesBias": "right",
+    "communityAgree": "4546",
+    "communityDisagree": "2417",
+    "sourceUrl": "http://www.cbn.com/ "
+  }, {
+    "sourceTitle": "CBS News",
+    "allSidesBias": "left-center",
+    "communityAgree": "3902",
+    "communityDisagree": "3596",
+    "sourceUrl": "http://www.cbs.com/ "
+  }, {
+    "sourceTitle": "Center for Public Integrity",
+    "allSidesBias": "left-center",
+    "communityAgree": "483",
+    "communityDisagree": "554",
+    "sourceUrl": "http://www.publicintegrity.org/ "
+  }, {
+    "sourceTitle": "Centre View",
+    "allSidesBias": "left-center",
+    "communityAgree": "397",
+    "communityDisagree": "455",
+    "sourceUrl": "http://www.centre-view.com "
+  }, {
+    "sourceTitle": "Chicago Sun-Times",
+    "allSidesBias": "left-center",
+    "communityAgree": "497",
+    "communityDisagree": "529",
+    "sourceUrl": "http://chicago.suntimes.com/ "
+  }, {
+    "sourceTitle": "Chicago Tribune",
+    "allSidesBias": "center",
+    "communityAgree": "1226",
+    "communityDisagree": "2056",
+    "sourceUrl": "http://www.chicagotribune.com/ "
+  }, {
+    "sourceTitle": "Christian Science Monitor",
+    "allSidesBias": "center",
+    "communityAgree": "6539",
+    "communityDisagree": "9136",
+    "sourceUrl": "http://www.csmonitor.com/ "
+  }, {
+    "sourceTitle": "City Journal",
+    "allSidesBias": "right",
+    "communityAgree": "108",
+    "communityDisagree": "109",
+    "sourceUrl": "http://www.city-journal.org "
+  }, {
+    "sourceTitle": "CNBC",
+    "allSidesBias": "center",
+    "communityAgree": "1192",
+    "communityDisagree": "2894",
+    "sourceUrl": "http://cnbc.com "
+  }, {
+    "sourceTitle": "CNN (Web News)",
+    "allSidesBias": "left-center",
+    "communityAgree": "22631",
+    "communityDisagree": "23267",
+    "sourceUrl": "http://www.cnn.com "
+  }, {
+    "sourceTitle": "CNS News",
+    "allSidesBias": "right",
+    "communityAgree": "642",
+    "communityDisagree": "534",
+    "sourceUrl": "http://www.cnsnews.com "
+  }, {
+    "sourceTitle": "CNSNews.com",
+    "allSidesBias": "right",
+    "communityAgree": "624",
+    "communityDisagree": "527",
+    "sourceUrl": "http://cnsnews.com/ "
+  }, {
+    "sourceTitle": "Conservative HQ",
+    "allSidesBias": "right",
+    "communityAgree": "571",
+    "communityDisagree": "239",
+    "sourceUrl": "http://www.conservativehq.com/ "
+  }, {
+    "sourceTitle": "Cook Report",
+    "allSidesBias": "center",
+    "communityAgree": "728",
+    "communityDisagree": "410",
+    "sourceUrl": "http://cookpolitical.com "
+  }, {
+    "sourceTitle": "Counter Currents",
+    "allSidesBias": "left-center",
+    "communityAgree": "245",
+    "communityDisagree": "158",
+    "sourceUrl": "http://www.countercurrents.org/ "
+  }, {
+    "sourceTitle": "Counterpointing",
+    "allSidesBias": "allsides",
+    "communityAgree": "267",
+    "communityDisagree": "246",
+    "sourceUrl": "http://www.counterpointing.com/ "
+  }, {
+    "sourceTitle": "CrowdPAC",
+    "allSidesBias": "center",
+    "communityAgree": "289",
+    "communityDisagree": "292",
+    "sourceUrl": "https://www.crowdpac.com/ "
+  }, {
+    "sourceTitle": "CU Independent",
+    "allSidesBias": "center",
+    "communityAgree": "244",
+    "communityDisagree": "273",
+    "sourceUrl": "http://cuindependent.com/ "
+  }, {
+    "sourceTitle": "Current Affairs",
+    "allSidesBias": "left",
+    "communityAgree": "64",
+    "communityDisagree": "25",
+    "sourceUrl": "https://www.currentaffairs.org "
+  }, {
+    "sourceTitle": "Daily Beast",
+    "allSidesBias": "left",
+    "communityAgree": "4020",
+    "communityDisagree": "3348",
+    "sourceUrl": "http://www.thedailybeast.com/ "
+  }, {
+    "sourceTitle": "Daily Cardinal",
+    "allSidesBias": "center",
+    "communityAgree": "286",
+    "communityDisagree": "296",
+    "sourceUrl": "http://www.dailycardinal.com/ "
+  }, {
+    "sourceTitle": "Daily Kos",
+    "allSidesBias": "left",
+    "communityAgree": "3502",
+    "communityDisagree": "1389",
+    "sourceUrl": "http://www.dailykos.com "
+  }, {
+    "sourceTitle": "Daily Mail",
+    "allSidesBias": "right",
+    "communityAgree": "857",
+    "communityDisagree": "765",
+    "sourceUrl": "http://dailymail.co.uk "
+  }, {
+    "sourceTitle": "Daily Northwestern",
+    "allSidesBias": "left-center",
+    "communityAgree": "255",
+    "communityDisagree": "248",
+    "sourceUrl": "http://dailynorthwestern.com/ "
+  }, {
+    "sourceTitle": "Daily Press",
+    "allSidesBias": "right-center",
+    "communityAgree": "232",
+    "communityDisagree": "310",
+    "sourceUrl": "http://www.dailypress.com "
+  }, {
+    "sourceTitle": "Daily Progress",
+    "allSidesBias": "center",
+    "communityAgree": "302",
+    "communityDisagree": "288",
+    "sourceUrl": "http://www.dailyprogress.com "
+  }, {
+    "sourceTitle": "Daily Targum",
+    "allSidesBias": "left-center",
+    "communityAgree": "154",
+    "communityDisagree": "286",
+    "sourceUrl": "http://www.dailytargum.com/ "
+  }, {
+    "sourceTitle": "Democracy Now",
+    "allSidesBias": "left",
+    "communityAgree": "3123",
+    "communityDisagree": "1395",
+    "sourceUrl": "http://www.democracynow.org/ "
+  }, {
+    "sourceTitle": "Deseret News",
+    "allSidesBias": "right-center",
+    "communityAgree": "879",
+    "communityDisagree": "1360",
+    "sourceUrl": "http://www.deseretnews.com/ "
+  }, {
+    "sourceTitle": "Diplomatic Courier",
+    "allSidesBias": "center",
+    "communityAgree": "236",
+    "communityDisagree": "170",
+    "sourceUrl": "http://www.diplomaticourier.com/ "
+  }, {
+    "sourceTitle": "Drudge Report",
+    "allSidesBias": "right-center",
+    "communityAgree": "1480",
+    "communityDisagree": "848",
+    "sourceUrl": "http://www.drudgereport.com/ "
+  }, {
+    "sourceTitle": "Duke Chronicle",
+    "allSidesBias": "center",
+    "communityAgree": "286",
+    "communityDisagree": "269",
+    "sourceUrl": "http://www.dukechronicle.com/ "
+  }, {
+    "sourceTitle": "Estes Park Trail Gazette",
+    "allSidesBias": "center",
+    "communityAgree": "135",
+    "communityDisagree": "207",
+    "sourceUrl": "http://www.eptrail.com/ "
+  }, {
+    "sourceTitle": "Eurek Alert",
+    "allSidesBias": "center",
+    "communityAgree": "236",
+    "communityDisagree": "265",
+    "sourceUrl": "http://www.eurekalert.org/ "
+  }, {
+    "sourceTitle": "FactCheck.org",
+    "allSidesBias": "center",
+    "communityAgree": "3984",
+    "communityDisagree": "2796",
+    "sourceUrl": "http://factcheck.org/ "
+  }, {
+    "sourceTitle": "Fair.org",
+    "allSidesBias": "center",
+    "communityAgree": "328",
+    "communityDisagree": "311",
+    "sourceUrl": "http://fair.org/ "
+  }, {
+    "sourceTitle": "Falls Church News - Press",
+    "allSidesBias": "left",
+    "communityAgree": "280",
+    "communityDisagree": "350",
+    "sourceUrl": "http://www.fcnp.com "
+  }, {
+    "sourceTitle": "Fiscal Times",
+    "allSidesBias": "right-center",
+    "communityAgree": "590",
+    "communityDisagree": "453",
+    "sourceUrl": "http://www.thefiscaltimes.com/ "
+  }, {
+    "sourceTitle": "FiveThirtyEight",
+    "allSidesBias": "center",
+    "communityAgree": "2384",
+    "communityDisagree": "1344",
+    "sourceUrl": "http://fivethirtyeight.com/ "
+  }, {
+    "sourceTitle": "Forbes",
+    "allSidesBias": "center",
+    "communityAgree": "1837",
+    "communityDisagree": "1343",
+    "sourceUrl": "http://www.forbes.com/ "
+  }, {
+    "sourceTitle": "Foreign Affairs",
+    "allSidesBias": "center",
+    "communityAgree": "618",
+    "communityDisagree": "335",
+    "sourceUrl": "https://www.foreignaffairs.com "
+  }, {
+    "sourceTitle": "Fox News",
+    "allSidesBias": "right-center",
+    "communityAgree": "17046",
+    "communityDisagree": "26381",
+    "sourceUrl": "http://www.foxnews.com/ "
+  }, {
+    "sourceTitle": "Fox News Editorial",
+    "allSidesBias": "right",
+    "communityAgree": "1550",
+    "communityDisagree": "543",
+    "sourceUrl": "http://www.foxnews.com/opinion.html "
+  }, {
+    "sourceTitle": "Fox News Latino",
+    "allSidesBias": "right",
+    "communityAgree": "1275",
+    "communityDisagree": "705",
+    "sourceUrl": "http://latino.foxnews.com/index.html "
+  }, {
+    "sourceTitle": "FrontPage Magazine",
+    "allSidesBias": "right",
+    "communityAgree": "329",
+    "communityDisagree": "275",
+    "sourceUrl": "http://frontpagemag.com/ "
+  }, {
+    "sourceTitle": "Hampton Roads Messanger",
+    "allSidesBias": "center",
+    "communityAgree": "273",
+    "communityDisagree": "285",
+    "sourceUrl": "http://www.hamptonroadsmessenger.com/ "
+  }, {
+    "sourceTitle": "Harvard Business School",
+    "allSidesBias": "left-center",
+    "communityAgree": "463",
+    "communityDisagree": "565",
+    "sourceUrl": "http://hbswk.hbs.edu/ "
+  }, {
+    "sourceTitle": "Herald Democrat",
+    "allSidesBias": "left",
+    "communityAgree": "325",
+    "communityDisagree": "257",
+    "sourceUrl": "http://heralddemocrat.com/ "
+  }, {
+    "sourceTitle": "HotAir",
+    "allSidesBias": "right-center",
+    "communityAgree": "738",
+    "communityDisagree": "690",
+    "sourceUrl": "http://hotair.com/ "
+  }, {
+    "sourceTitle": "HuffPost",
+    "allSidesBias": "left",
+    "communityAgree": "14769",
+    "communityDisagree": "17986",
+    "sourceUrl": "http://www.huffingtonpost.com/ "
+  }, {
+    "sourceTitle": "Inacow",
+    "allSidesBias": "right",
+    "communityAgree": "281",
+    "communityDisagree": "165",
+    "sourceUrl": "http://www.inacow.com/ "
+  }, {
+    "sourceTitle": "Independent Journal Review",
+    "allSidesBias": "right-center",
+    "communityAgree": "994",
+    "communityDisagree": "857",
+    "sourceUrl": "http://www.ijreview.com/ "
+  }, {
+    "sourceTitle": "Indiana Daily Student",
+    "allSidesBias": "center",
+    "communityAgree": "188",
+    "communityDisagree": "248",
+    "sourceUrl": "http://www.idsnews.com/ "
+  }, {
+    "sourceTitle": "Indy Online",
+    "allSidesBias": "center",
+    "communityAgree": "187",
+    "communityDisagree": "197",
+    "sourceUrl": "https://www.theindyonline.com/ "
+  }, {
+    "sourceTitle": "Indy Week",
+    "allSidesBias": "left-center",
+    "communityAgree": "208",
+    "communityDisagree": "255",
+    "sourceUrl": "http://www.indyweek.com/ "
+  }, {
+    "sourceTitle": "InfoWars",
+    "allSidesBias": "right",
+    "communityAgree": "3058",
+    "communityDisagree": "716",
+    "sourceUrl": "http://www.infowars.com/ "
+  }, {
+    "sourceTitle": "International Business Times",
+    "allSidesBias": "center",
+    "communityAgree": "744",
+    "communityDisagree": "605",
+    "sourceUrl": "http://www.ibtimes.com/ "
+  },
+  {
+    "sourceTitle": "NPR News",
+    "allSidesBias": "center",
+    "communityAgree": "15615",
+    "communityDisagree": "10494",
+    "sourceUrl": "http://www.npr.org/ "
+  }
+]

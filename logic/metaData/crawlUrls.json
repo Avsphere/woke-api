@@ -1,0 +1,441 @@
+{
+  "base_urls": [{
+    "url": "http://www.canyoncountryzephyr.com/ "
+  }, {
+    "url": "http://www.commercialappeal.com/ "
+  }, {
+    "url": "http://www.courier-journal.com/ "
+  }, {
+    "url": "http://dailycaller.com/ "
+  }, {
+    "url": "http://www.thedailyshow.com/ "
+  }, {
+    "url": "http://www.dailywire.com/ "
+  }, {
+    "url": "http://www.delcotimes.com/ "
+  }, {
+    "url": "http://www.economist.com/ "
+  }, {
+    "url": "http://thefederalist.com/ "
+  }, {
+    "url": "http://www.thegatewaypundit.com/ "
+  }, {
+    "url": "https://www.theguardian.com/us "
+  }, {
+    "url": "https://theintercept.com, https://theintercept.com/feeds/ "
+  }, {
+    "url": "http://www.thejustice.org/ "
+  }, {
+    "url": "http://www.koreaherald.com/index.php "
+  }, {
+    "url": "http://thelibertarianrepublic.com/ "
+  }, {
+    "url": "http://www.thenation.com "
+  }, {
+    "url": "http://observer.com/ "
+  }, {
+    "url": "http://www.usforacle.com/ "
+  }, {
+    "url": "http://www.redandblack.com/ "
+  }, {
+    "url": "http://reliablebias.com/home/ "
+  }, {
+    "url": "https://www.therepublicannews.com/ "
+  }, {
+    "url": "http://www.sacbee.com/ "
+  }, {
+    "url": "http://www.telegraph.co.uk/ "
+  }, {
+    "url": "http://www.theverge.com/politics "
+  }, {
+    "url": "http://theweek.com/ "
+  }, {
+    "url": "http://www.weeklystandard.com/ "
+  }, {
+    "url": "http://www.theblaze.com/ "
+  }, {
+    "url": "http://thinkprogress.org/ "
+  }, {
+    "url": "http://www.time.com/time/ "
+  }, {
+    "url": "http://townhall.com/ "
+  }, {
+    "url": "https://www.truthorfiction.com/ "
+  }, {
+    "url": "http://www.truth-out.org/ "
+  }, {
+    "url": "http://www.usnews.com/ "
+  }, {
+    "url": "http://www.univision.com/ "
+  }, {
+    "url": "http://upworthy.com "
+  }, {
+    "url": "http://www.usatoday.com/ "
+  }, {
+    "url": "http://www.vanityfair.com/ "
+  }, {
+    "url": "http://volanteonline.com/ "
+  }, {
+    "url": "http://www.vox.com "
+  }, {
+    "url": "http://vtdigger.org/ "
+  }, {
+    "url": "http://online.wsj.com/ "
+  }, {
+    "url": "http://online.wsj.com/public/page/news-opinion-commentary.html "
+  }, {
+    "url": "http://washingtonexaminer.com/ "
+  }, {
+    "url": "http://freebeacon.com/ "
+  }, {
+    "url": "http://washingtonmonthly.com/ "
+  }, {
+    "url": "http://www.washingtonpost.com/regional "
+  }, {
+    "url": "http://www.washingtontimes.com/ "
+  }, {
+    "url": "http://www.westernjournalism.com/ "
+  }, {
+    "url": "http://wfae.org/ "
+  }, {
+    "url": "http://news.wgbh.org/ "
+  }, {
+    "url": "http://wisconsingazette.com/ "
+  }, {
+    "url": "http://www.wnd.com/ "
+  }, {
+    "url": "https://screen.yahoo.com "
+  }, {
+    "url": "http://www.yesmagazine.org/ "
+  }, {
+    "url": "http://www.allsides.com "
+  }, {
+    "url": "http://www.alternet.org/ "
+  }, {
+    "url": "http://spectator.org/ "
+  }, {
+    "url": "http://www.americanthinker.com/ "
+  }, {
+    "url": "http://www.aquinas.edu/thesaint/ "
+  }, {
+    "url": "http://www.arkansasonline.com/ "
+  }, {
+    "url": "http://www.ap.org/ "
+  }, {
+    "url": "http://www.ajc.com/ "
+  }, {
+    "url": "http://www.mystatesman.com/ "
+  }, {
+    "url": "http://www.barnstablepatriot.com/home2/ "
+  }, {
+    "url": "http://www.bbc.com/ "
+  }, {
+    "url": "http://www.bearingdrift.com "
+  }, {
+    "url": "http://www.bloomberg.com/ "
+  }, {
+    "url": "http://www.bluevirginia.us "
+  }, {
+    "url": "http://en.wikipedia.org/wiki/Boing_Boing, http://boingboing.net/ "
+  }, {
+    "url": "http://www.bgdailynews.com/ "
+  }, {
+    "url": "http://www.breitbart.com/ "
+  }, {
+    "url": "http://www.businessinsider.com/ "
+  }, {
+    "url": "http://www.bustle.com/ "
+  }, {
+    "url": "http://Buzzfeed.com "
+  }, {
+    "url": "http://www.c-span.org/ "
+  }, {
+    "url": "http://calmatters.org/ "
+  }, {
+    "url": "http://www.calwatchdog.com/ "
+  }, {
+    "url": "http://www.care2.com "
+  }, {
+    "url": "http://www.cbn.com/ "
+  }, {
+    "url": "http://www.cbs.com/ "
+  }, {
+    "url": "http://www.publicintegrity.org/ "
+  }, {
+    "url": "http://www.centre-view.com "
+  }, {
+    "url": "http://chicago.suntimes.com/ "
+  }, {
+    "url": "http://www.chicagotribune.com/ "
+  }, {
+    "url": "http://www.csmonitor.com/ "
+  }, {
+    "url": "http://www.city-journal.org "
+  }, {
+    "url": "http://cnbc.com "
+  }, {
+    "url": "http://www.cnn.com "
+  }, {
+    "url": "http://www.cnsnews.com "
+  }, {
+    "url": "http://cnsnews.com/ "
+  }, {
+    "url": "http://www.conservativehq.com/ "
+  }, {
+    "url": "http://cookpolitical.com "
+  }, {
+    "url": "http://www.countercurrents.org/ "
+  }, {
+    "url": "http://www.counterpointing.com/ "
+  }, {
+    "url": "https://www.crowdpac.com/ "
+  }, {
+    "url": "http://cuindependent.com/ "
+  }, {
+    "url": "https://www.currentaffairs.org "
+  }, {
+    "url": "http://www.thedailybeast.com/ "
+  }, {
+    "url": "http://www.dailycardinal.com/ "
+  }, {
+    "url": "http://www.dailykos.com "
+  }, {
+    "url": "http://dailymail.co.uk "
+  }, {
+    "url": "http://dailynorthwestern.com/ "
+  }, {
+    "url": "http://www.dailypress.com "
+  }, {
+    "url": "http://www.dailyprogress.com "
+  }, {
+    "url": "http://www.dailytargum.com/ "
+  }, {
+    "url": "http://www.democracynow.org/ "
+  }, {
+    "url": "http://www.deseretnews.com/ "
+  }, {
+    "url": "http://www.diplomaticourier.com/ "
+  }, {
+    "url": "http://www.drudgereport.com/ "
+  }, {
+    "url": "http://www.dukechronicle.com/ "
+  }, {
+    "url": "http://www.eptrail.com/ "
+  }, {
+    "url": "http://www.eurekalert.org/ "
+  }, {
+    "url": "http://factcheck.org/ "
+  }, {
+    "url": "http://fair.org/ "
+  }, {
+    "url": "http://www.fcnp.com "
+  }, {
+    "url": "http://www.thefiscaltimes.com/ "
+  }, {
+    "url": "http://fivethirtyeight.com/ "
+  }, {
+    "url": "http://www.forbes.com/ "
+  }, {
+    "url": "https://www.foreignaffairs.com "
+  }, {
+    "url": "http://www.foxnews.com/ "
+  }, {
+    "url": "http://www.foxnews.com/opinion.html "
+  }, {
+    "url": "http://latino.foxnews.com/index.html "
+  }, {
+    "url": "http://frontpagemag.com/ "
+  }, {
+    "url": "http://www.hamptonroadsmessenger.com/ "
+  }, {
+    "url": "http://hbswk.hbs.edu/ "
+  }, {
+    "url": "http://heralddemocrat.com/ "
+  }, {
+    "url": "http://hotair.com/ "
+  }, {
+    "url": "http://www.huffingtonpost.com/ "
+  }, {
+    "url": "http://www.inacow.com/ "
+  }, {
+    "url": "http://www.ijreview.com/ "
+  }, {
+    "url": "http://www.idsnews.com/ "
+  }, {
+    "url": "https://www.theindyonline.com/ "
+  }, {
+    "url": "http://www.indyweek.com/ "
+  }, {
+    "url": "http://www.infowars.com/ "
+  }, {
+    "url": "http://www.ibtimes.com/ "
+  }, {
+    "url": "http://www.investors.com "
+  }, {
+    "url": "http://www.ivn.us "
+  }, {
+    "url": "https://jacobinmag.com/ "
+  }, {
+    "url": "http://journalistsresource.org/ "
+  }, {
+    "url": "https://www.jubileemedia.com/ "
+  }, {
+    "url": "http://www.judicialwatch.org "
+  }, {
+    "url": "http://KQED.org "
+  }, {
+    "url": "http://www.ksl.com/ "
+  }, {
+    "url": "http://lasvegassun.com/ "
+  }, {
+    "url": "http://www.leesburgtoday.com "
+  }, {
+    "url": "http://www.lifehacker.com/ "
+  }, {
+    "url": "http://www.listenfirstproject.org/ "
+  }, {
+    "url": "http://liveactionnews.org/ "
+  }, {
+    "url": "http://www.livingroomconversations.org/ "
+  }, {
+    "url": "http://www.timescall.com/ "
+  }, {
+    "url": "http://www.latimes.com/ "
+  }, {
+    "url": "http://www.courier-journal.com/ "
+  }, {
+    "url": "https://www.mediamatters.org/ "
+  }, {
+    "url": "http://www.mediaite.com/ "
+  }, {
+    "url": "http://www.miamiherald.com/ "
+  }, {
+    "url": "http://michellemalkin.com/ "
+  }, {
+    "url": "https://www.michigandaily.com/ "
+  }, {
+    "url": "https://www.mismatch.org/ "
+  }, {
+    "url": "http://news.mit.edu "
+  }, {
+    "url": "http://www.motherjones.com/ "
+  }, {
+    "url": "http://www.msnbc.com/ "
+  }, {
+    "url": "http://www.nationaljournal.com/ "
+  }, {
+    "url": "http://www.nationalreview.com/ "
+  }, {
+    "url": "http://www.today.com/ "
+  }, {
+    "url": "http://www.nbcnews.com "
+  }, {
+    "url": "http://www.newrepublic.com/ "
+  }, {
+    "url": "http://nymag.com/ "
+  }, {
+    "url": "http://www.nypost.com/ "
+  }, {
+    "url": "http://www.nytimes.com/ "
+  }, {
+    "url": "http://www.newsmax.com/ "
+  }, {
+    "url": "http://www.thedailybeast.com/newsweek.html "
+  }, {
+    "url": "http://nmpolitics.net/ "
+  }, {
+    "url": "https://www.npr.org/sections/opinion/ "
+  }, {
+    "url": "http://www.npr.org/ "
+  }, {
+    "url": "http://www.ocregister.com/ "
+  }, {
+    "url": "http://www.psmag.com/ "
+  }, {
+    "url": "http://www.pbs.org/newshour/ "
+  }, {
+    "url": "http://www.peacock-panache.com/ "
+  }, {
+    "url": "http://www.post-gazette.com "
+  }, {
+    "url": "https://pjmedia.com/ "
+  }, {
+    "url": "http://www.politico.com/ "
+  }, {
+    "url": "http://www.politicususa.com/ "
+  }, {
+    "url": "http://www.politifact.com/ "
+  }, {
+    "url": "http://www.pressherald.com/ "
+  }, {
+    "url": "http://www.pri.org/ "
+  }, {
+    "url": "http://www.procon.org/ "
+  }, {
+    "url": "https://progressivevoicesofiowa.com/ "
+  }, {
+    "url": "http://www.propublica.org/ "
+  }, {
+    "url": "http://www.pxw.news "
+  }, {
+    "url": "http://qz.com/ "
+  }, {
+    "url": "http://www.rawstory.com/ "
+  }, {
+    "url": "http://www.realclearpolitics.com/ "
+  }, {
+    "url": "http://reason.org/ "
+  }, {
+    "url": "http://www.myrecordjournal.com/home/ "
+  }, {
+    "url": "http://www.reuters.com/ "
+  }, {
+    "url": "http://www.richmond.com/ "
+  }, {
+    "url": "http://www.rightsidenews.com/ "
+  }, {
+    "url": "http://www.rollingstone.com/ "
+  }, {
+    "url": "http://www.salon.com/ "
+  }, {
+    "url": "http://www.mercurynews.com/ "
+  }, {
+    "url": "https://www.sciencedaily.com/ "
+  }, {
+    "url": "http://www.scientificamerican.com/ "
+  }, {
+    "url": "http://www.sfweekly.com/ "
+  }, {
+    "url": "http://www.sfgate.com/ "
+  }, {
+    "url": "http://www.skyhidailynews.com/ "
+  }, {
+    "url": "http://www.smerconish.com "
+  }, {
+    "url": "http://www.socialistalternative.org/ "
+  }, {
+    "url": "http://www.spokesman.com/ "
+  }, {
+    "url": "http://www.state-journal.com/ "
+  }, {
+    "url": "http://suspendbeliefpodcast.com/, https://itunes.apple.com/us/podcast/the-dreaded-disagreement/id1053294043?i=356129673&mt=2%20"
+  }, {
+    "url": "http://www.tallahassee.com/ "
+  }, {
+    "url": "http://techcrunch.com/ "
+  }, {
+    "url": "http://www.teenvogue.com/ "
+  }, {
+    "url": "http://www.foxnews.com/ "
+  }, {
+    "url": "http://www.centralkynews.com/amnews/ "
+  }, {
+    "url": "http://www.theamericanconservative.com "
+  }, {
+    "url": "http://www.theatlantic.com/ "
+  }, {
+    "url": "http://www.bostonglobe.com/ "
+  }, {
+    "url": "http://www.cadizrecord.com/ "
+  }]
+}

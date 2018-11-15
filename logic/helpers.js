@@ -17,6 +17,7 @@ const getFileNames = (directory, recurse) => {
     readFn(directory, (err, files) => {
       if ( err) { reject(err) }
       const filteredFiles = files.filter( f => path.extname(f) == '.json' ).map( f => path.join(directory, f) )
+      // console.log("Filenames : ", filteredFiles.length)
       resolve( filteredFiles )
     })
   })
@@ -68,19 +69,20 @@ const saveData = (data, directory) => {
 }
 
 helpers.attachPolarity = ( data, polarityData ) => {
-  const augmentedData = data.map( d => {
+  const augmentedData = []
+  data.forEach( d => {
     const sourceDomain = d.source_domain.trim().toLowerCase()
     const polarityScore = polarityData.find( p => {
       const polaritySource = url.parse(p.sourceUrl.trim()).hostname.toLowerCase();
       if ( polaritySource.includes(sourceDomain) ) { return true; }
       else { return false; }
     })
-    if ( !polarityScore ) {
-      // console.log("There is no polairty information for:", sourceDomain);
+    if ( polarityScore ) {
+      d.polarityScore = polarityScore;
+      augmentedData.push(d);
+    } else {
+      console.log(`${d.title} has no polarityData`)
     }
-
-
-    d.polarityScore = polarityScore || {};
   })
   return augmentedData;
 }

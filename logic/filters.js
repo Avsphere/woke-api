@@ -12,7 +12,6 @@ filters.filterDate = (maxYears) => (datas) => datas.filter( ({date_publish, loca
 filters.filterSize = (minSize) => (datas) => datas.filter( d => {
   if ( d.text ) {
     const tokens = tokenizer.tokenize(d.text);
-    console.log(tokens.length)
     return tokens.length > minSize;
   } else {
     return false
