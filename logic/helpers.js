@@ -105,11 +105,12 @@ helpers.averageSize = (datas) => {
   .reduce( (total, next) => total + next) / datas.length;
 }
 
-helpers.parseText = (documents, removeStops) => {
+helpers.parseText = (documents, removeStops, additionalStopWords) => {
   removeStops = removeStops || false;
+  additionalStopWords = additionalStopWords || []
   let parsedData = documents.map( d => tokenizer.tokenize(d) )
   if ( removeStops ) {
-    parsedData = parsedData.map( d => stopWords.removeStopwords(d).filter(t => t.length > 3) )
+    parsedData = parsedData.map( d => stopWords.removeStopwords(d).filter(t => t.length > 3).filter( t => !additionalStopWords.includes(t) ) )
   }
   return parsedData
 }
