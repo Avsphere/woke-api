@@ -41,7 +41,6 @@ router.post('/getCollection', async (req, res) => {
       query['polarityScore.allSidesBias'] = polarity
     }
     if ( req.body.title ) {
-      //following law of specificity
       query = {}
       query['title'] = req.body.title
     }
@@ -57,14 +56,16 @@ router.post('/getCollection', async (req, res) => {
 router.post('/getUserArticles', async (req, res) => {
   try {
     let uuid = req.body.uuid;
-    let sortBy = req.body.sortBy || 'score';
+    let sortBy = req.body.sortBy || 'topicScore';
     const topic = req.body.topic || 'trump';
+    const collectionSize = req.body.collectionSize || 50;
     let requestingUser = await User.findOne({ uuid : uuid }).exec()
     if ( !requestingUser ) {
       requestingUser = await createNewUser(uuid);
     }
-    let articles = await requestingUser.getArticles({topic : req.body.topic, collectionSize : 50, topic : topic });
+    let articles = await requestingUser.getArticles({topic : req.body.topic, collectionSize : collectionSize, topic : topic });
     if ( sortBy == 'score' ) { articles.sort( (a,b) => b.score.weightedScore - a.score.weightedScore ) }
+    if ( sortBy == 'topicScore' ) { articles.sort( (a,b) => b.topicScores[topic] - a.topicScores[topic] ) }
 
     res.send({ articles : articles, user : requestingUser })
   }
