@@ -28,12 +28,12 @@ const saveGold = async (filteredData, saveDir) => {
 const siftTrash = async (config) => {
   try {
     console.log(`Beginning collection process ${Date()}`)
-    data = await helpers.collect(config.dataDir, true)
+    data = await helpers.collect(config.dataDir)
     let filteredData = applyFilters(config.filters)
 
     let polarityData = await jsonFile.readFile(config.polarityFile);
     filteredData = helpers.attachPolarity(filteredData, polarityData)
-
+    filteredData = helpers.removeDupes(filteredData);
     console.log(`Filtered data. Old size: ${data.length}, new size ${filteredData.length}`)
     return filteredData;
   } catch (e) {
@@ -44,7 +44,7 @@ const siftTrash = async (config) => {
 
 const setup = async (config) => {
   const filteredData = await siftTrash(config)
-  saveGold(filteredData, config.saveDir)
+  await saveGold(filteredData, config.saveDir)
   return true;
 }
 
@@ -53,11 +53,11 @@ const setup = async (config) => {
 
 
 const config = {
-  dataDir : '../jsonData/',
+  dataDir : './data/rawGold',
   saveDir : './data/gold',
   polarityFile : './logic/metaData/polarityData.json',
-  filters : [ filters.filterDate(1), filters.filterSize(500), filters.hasTitle, filters.hasImageUrl ]
+  filters : [ filters.filterDate(3), filters.filterSize(500), filters.hasTitle, filters.hasImageUrl ]
 }
 setup(config)
-.then( _ => console.log("all done!"))
+.then( _ => { console.log("all done!"); process.exit(0); })
 .catch( e => console.error("Error during setup", e) )

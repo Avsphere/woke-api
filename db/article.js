@@ -25,7 +25,8 @@ const articleSchema = mongoose.Schema({
     sourceUrl : { type : String, required : false }
   },
   score : {},
-  topicScores : {}
+  topicScores : {},
+  topic : { type : String, required : false }
 
 })
 

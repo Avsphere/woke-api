@@ -33,21 +33,26 @@ const grabData = (fileNames, max) => {
 }
 
 
+
+
 const clearDir = (dirName) => {
   return new Promise( (resolve, reject) => {
     fs.readdir(dirName, (err, files) => {
       if ( err ) { reject(err); }
-      const promises = files.map( f => {
-        return new Promise( (resolve, reject) => {
-          fs.unlink(path.join(dirName, f), (err) => {
-            if ( err ) { reject(err); }
-            resolve(true);
+      if ( !files || files.length == 0 ) { resolve(true) }
+      else {
+        const promises = files.map( f => {
+          return new Promise( (resolve, reject) => {
+            fs.unlink(path.join(dirName, f), (err) => {
+              if ( err ) { reject(err); }
+              resolve(true);
+            })
           })
         })
-      })
-      Promise.all(promises)
-      .then( resolve(true) )
-      .catch( e => reject(e) )
+        Promise.all(promises)
+        .then( resolve(true) )
+        .catch( e => reject(e) )
+      }
     })
   })
 }
@@ -66,6 +71,26 @@ const saveData = (data, directory) => {
     }
   })
   return Promise.all(promisedWrites)
+}
+
+helpers.mapPolarity = (polarity) => {
+  let mappedPolarity = ''
+  if ( typeof polarity == 'number' || polarity.length == 1) {
+    if ( polarity == '0' ) { mappedPolarity = 'left' }
+    else if ( polarity == '1' ) { mappedPolarity = 'left-center' }
+    else if ( polarity == '2' ) { mappedPolarity = 'center' }
+    else if ( polarity == '3' ) { mappedPolarity = 'right-center' }
+    else if ( polarity == '4' ) { mappedPolarity = 'right' }
+    else { console.error("invalid passed polarity"); return 'center';}
+  } else {
+    if ( polarity == 'left' ) { mappedPolarity = 0 }
+    else if ( polarity == 'left-center' ) { mappedPolarity = 1 }
+    else if ( polarity == 'center' ) { mappedPolarity = 2 }
+    else if ( polarity == 'right-center' ) { mappedPolarity = 3 }
+    else if ( polarity == 'right' ) { mappedPolarity = 4 }
+    else { console.error("invalid passed polarity"); return 2;}
+  }
+  return mappedPolarity;
 }
 
 helpers.attachPolarity = ( data, polarityData ) => {
@@ -95,7 +120,19 @@ helpers.collect = (directory, recurse) => {
     .catch(reject)
   })
 }
-
+helpers.uniq = (a) => Array.from(new Set(a));
+helpers.removeDupes = (data) => {
+  const filteredData = []
+  const uniqDict= {}
+  data.forEach( doc => {
+    const key = doc.text.split(' ').splice(0,25);
+    uniqDict[key] = doc;
+  })
+  for ( const key in uniqDict ) {
+    filteredData.push(uniqDict[key] )
+  }
+  return filteredData;
+}
 //analysis helpers
 helpers.averageSize = (datas) => {
   return datas.map( d => {

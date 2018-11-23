@@ -31,6 +31,21 @@ const averageTextLength = ( data ) => {
   }) / data.length
 }
 
+const biasScores = ( data ) => {
+  const biasDict = {
+    "center" : 0,
+    "left-center" : 0,
+    "right" : 0,
+    "left" : 0,
+    "allsides" : 0,
+    "right-center" : 0
+  }
+  data.forEach( ({polarityScore}) => {
+    biasDict[polarityScore.allSidesBias]++
+  })
+  return biasDict
+}
+
 const averageDaysOld = ( data ) => {
   return data
   .map( ({date_publish}) =>  moment().diff(date_publish, 'days') )
@@ -72,8 +87,8 @@ const collector = async () => {
     // console.log(averageDaysOld(data))
     // const testData = data.filter( ({filename}) => filename == 'ZooAtlantapandatwinsgrowingtoobigtohandle_4607.json' )
     // console.log( tokenFrequency(testData) )
-    console.log( averagePolarity(data) )
-
+    // console.log( averagePolarity(data) )
+    console.log(biasScores(data))
 
   } catch (e) {
     console.error("Ohhhhhhh fuck", e)

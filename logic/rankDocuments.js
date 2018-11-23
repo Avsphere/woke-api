@@ -77,7 +77,7 @@ const rankDocs = async (filteredData) => {
   const computeScore = (mappedVocab, judge) => {
     const scoredDocs = filteredData.map( d => {
       const tokenize = (text) => {
-        const tokens = tokenizer.tokenize( text.toLowerCase() );
+        const tokens = tokenizer.tokenize( text.toLowerCase() ).splice(0,500);
         return tokens.filter( t => t.length > 3 );
       }
       const compute = (tokens) => tokens.map( t => {
@@ -94,10 +94,11 @@ const rankDocs = async (filteredData) => {
         return d;
       }
       const rawScore = compute(tokens)
-      let popularityMultiplier = ( parseInt(d.polarityScore.communityAgree) + parseInt(d.polarityScore.communityDisagree) ) / avgPopularityScore;
-      if ( popularityMultiplier < .30 ) { popularityMultiplier = .1; } // punishing the bottom 30% of sources
-      const weightedScore = ( rawScore * popularityMultiplier ) / (tokens.length / 3)
-      d.scores = { weightedScore : rawScore / (tokens.length / 3) , textLength : tokens.length, rawScore : rawScore, popularityMultiplier : popularityMultiplier }
+      let rawPopularityMultiplier = ( parseInt(d.polarityScore.communityAgree) + parseInt(d.polarityScore.communityDisagree) ) / avgPopularityScore;
+      let weightedPopularity = rawPopularityMultiplier / 6;
+      if ( weightedPopularity < 1 ) { weightedPopularity = 1; }
+      const weightedScore = rawScore * weightedPopularity
+      d.scores = { weightedScore : weightedScore, textLength : tokens.length, rawScore : rawScore, rawPopularityMultiplier : rawPopularityMultiplier, weightedPopularity : weightedPopularity }
       return d;
     })
 
@@ -115,13 +116,15 @@ const rankDocs = async (filteredData) => {
 
 
 const buildRankings = async() => {
-  const data = await helpers.collect(goldDir)
+  let data = await helpers.collect(goldDir)
   const rankedDocs = await rankDocs(data)
   const topDocs = []
-  rankedDocs.rankedDocs.forEach( d => topDocs.push({ "filename" : d.localpath, "score" : d.scores }) )
-  jsonFile.writeFile(path.join(__dirname, '../data/ldaSample/metaRankedDocs.json'), topDocs)
-
-  console.log( rankedDocs.rankedDocs.splice(0,10) )
+  rankedDocs.rankedDocs.forEach( d => topDocs.push({ "filename" : d.filename, "score" : d.scores }) )
+  await jsonFile.writeFile(path.join(__dirname, './metaData/metaRankedDocs.json'), topDocs)
+  // console.log( helpers.uniq(t).sort().reverse() );
+  // rankedDocs.rankedDocs.forEach( doc => {
+  //   // console.log(doc.polarityScore.sourceUrl, doc.polarityScore.allSidesBias);
+  // })
   return rankedDocs
 }
 
