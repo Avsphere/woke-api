@@ -24,7 +24,7 @@ userSchema.methods.getArticles = async function(options) {
   const topic = options.topic;
   const collectionSize = options.collectionSize || 50;
   let matchingProportion= options.matchingProportion || .7; //if the chosen article polarity == 1 then 70% of the articles will be a 1 and 30% a 0
-  const usersEstimatedBias = this.estimatedBias;
+  let usersEstimatedBias = this.estimatedBias;
   const getArticlesPolarity = () => {
     let articlesPolarity = 0
     if ( usersEstimatedBias <= 1 ) {
@@ -42,18 +42,29 @@ userSchema.methods.getArticles = async function(options) {
     return articlesPolarity
   }
   const articlesPolarity = mapPolarity( getArticlesPolarity() );
-  let variationPolarity = mapPolarity( getArticlesPolarity() >= 2 ? getArticlesPolarity() - 1 : getArticlesPolarity() + 1 )
+  let variationPolarity = 0
+  if ( usersEstimatedBias < 2 ) {
+    variationPolarity = mapPolarity(3)
+  } else if ( usersEstimatedBias > 2 ) {
+    variationPolarity = mapPolarity(1)
+  }
   const matchingCount = Math.floor( matchingProportion*collectionSize)
   const notMatchingCount = Math.ceil( (1-matchingProportion)*collectionSize )
+  console.log(articlesPolarity, variationPolarity, matchingCount, notMatchingCount)
   let matchingArticles = []
   let variationArticles = []
-  if ( articlesPolarity == 'center') {
-    const leftCenter = await Article.find({ 'polarityScore.allSidesBias' : 'left-center', 'topic' : topic }).limit( Math.ceil(collectionSize/2) ).exec()
-    const rightCenter = await Article.find({ 'polarityScore.allSidesBias' : 'right-center', 'topic' : topic }).limit( Math.ceil(collectionSize/2) ).exec()
-    variationArticles = leftCenter.concat(rightCenter)
+  if ( usersEstimatedBias == 2) {
+    const leftCenter = await Article.find({ 'polarityScore.allSidesBias' : 'left-center', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.floor(collectionSize/3) ).exec()
+    const rightCenter = await Article.find({ 'polarityScore.allSidesBias' : 'right-center', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.floor(collectionSize/3) ).exec()
+    const right = await Article.find({ 'polarityScore.allSidesBias' : 'right', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(collectionSize/6) ).exec()
+    const left = await Article.find({ 'polarityScore.allSidesBias' : 'left', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(collectionSize/6) ).exec()
+    variationArticles = leftCenter.concat(rightCenter).concat(right).concat(left)
   } else {
-    matchingArticles = await Article.find({ 'polarityScore.allSidesBias' : articlesPolarity, 'topic' : topic }).limit(matchingCount).exec()
-    variationArticles = await Article.find({ 'polarityScore.allSidesBias' : variationPolarity, 'topic' : topic }).limit(notMatchingCount).exec()
+    matchingArticles = await Article.find({ 'polarityScore.allSidesBias' : articlesPolarity, 'topic' : topic, _id : { $nin : this.articles } }).limit( matchingCount ).exec()
+    variationArticles = await Article.find({ 'polarityScore.allSidesBias' : variationPolarity, 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.floor(notMatchingCount * .8) ).exec()
+    const right = await Article.find({ 'polarityScore.allSidesBias' : 'right', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(notMatchingCount * .1) + 1 ).exec() //always give some farther articles
+    const left = await Article.find({ 'polarityScore.allSidesBias' : 'left', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(notMatchingCount * .1) + 1 ).exec()
+    variationArticles = variationArticles.concat(right).concat(left)
   }
   return matchingArticles.concat(variationArticles)
 }

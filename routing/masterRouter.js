@@ -20,6 +20,14 @@ const createNewUser = async (uuid) => {
   }
 }
 
+const shuffle = (a) => {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
 router.get('/', async (req, res) => {
   res.render('index', { fileNames : []})
 })
@@ -59,13 +67,17 @@ router.post('/getUserArticles', async (req, res) => {
     let sortBy = req.body.sortBy || 'topicScore';
     const topic = req.body.topic || 'trump';
     const collectionSize = req.body.collectionSize || 50;
+    const matchingProportion = req.body.matchingProportion || .7
     let requestingUser = await User.findOne({ uuid : uuid }).exec()
     if ( !requestingUser ) {
       requestingUser = await createNewUser(uuid);
     }
-    let articles = await requestingUser.getArticles({topic : req.body.topic, collectionSize : collectionSize, topic : topic });
+    let articles = await requestingUser.getArticles({topic : req.body.topic, collectionSize : collectionSize, topic : topic, matchingProportion : matchingProportion });
     if ( sortBy == 'score' ) { articles.sort( (a,b) => b.score.weightedScore - a.score.weightedScore ) }
     if ( sortBy == 'topicScore' ) { articles.sort( (a,b) => b.topicScores[topic] - a.topicScores[topic] ) }
+    if ( req.body.shuffle ) {
+      articles = shuffle(articles)
+    }
 
     res.send({ articles : articles, user : requestingUser })
   }
