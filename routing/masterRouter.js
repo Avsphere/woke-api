@@ -142,6 +142,9 @@ router.post('/hateArticle', async( req, res) => {
       .reduce( (a, b) => a + b) / hatingUser.articles.length;
       hatingUser.estimatedBias = estimatedBias;
       hatingUser = await hatingUser.save();
+    } else {
+      hatingUser.estimatedBias = 2;
+      hatingUser = await hatingUser.save()
     }
     res.send(hatingUser);
   } catch ( e ) {

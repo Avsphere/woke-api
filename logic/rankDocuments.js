@@ -114,17 +114,36 @@ const rankDocs = async (filteredData) => {
   }
 }
 
-
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
 const buildRankings = async() => {
   let data = await helpers.collect(goldDir)
   const rankedDocs = await rankDocs(data)
   const topDocs = []
   rankedDocs.rankedDocs.forEach( d => topDocs.push({ "filename" : d.filename, "score" : d.scores }) )
-  await jsonFile.writeFile(path.join(__dirname, './metaData/metaRankedDocs.json'), topDocs)
-  // console.log( helpers.uniq(t).sort().reverse() );
-  // rankedDocs.rankedDocs.forEach( doc => {
-  //   // console.log(doc.polarityScore.sourceUrl, doc.polarityScore.allSidesBias);
-  // })
+  // await jsonFile.writeFile(path.join(__dirname, './metaData/metaRankedDocs.json'), topDocs)
+  let lefts = []
+  let rights = []
+  for ( let i = 0; i < rankedDocs.rankedDocs.length; i++ ) {
+    let doc = rankedDocs.rankedDocs[i];
+    if ( doc.polarityScore.allSidesBias === 'left' || doc.polarityScore.allSidesBias == 'left-center') {
+      lefts.push(doc);
+    } else if ( doc.polarityScore.allSidesBias === 'right' || doc.polarityScore.allSidesBias === 'right-center' ) {
+      rights.push(doc)
+    }
+    if ( lefts.length >= 20 && rights.length >= 20 ) { break; }
+  }
+
+  const shuffled = shuffle(lefts.concat(rights)).map( doc => {
+    const bias =  doc.polarityScore.allSidesBias;
+    return { title : doc.title, text : doc.text.substring(0, 250), bias : bias }
+  })
+  await jsonFile.writeFile(path.join(__dirname, './metaData/shuffleTest.json'), shuffled)
   return rankedDocs
 }
 
