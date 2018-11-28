@@ -208,6 +208,7 @@ router.post('/resetUser', async (req, res) => {
   try {
     const user = await User.findOne({ uuid : req.body.uuid })
     user.estimatedBias = 2;
+    user.articles = []
     const updatedUser = await user.save()
     res.send(updatedUser);
   } catch ( e ) {
