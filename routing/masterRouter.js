@@ -204,5 +204,18 @@ router.post('/getUser', async (req, res) => {
   }
 })
 
+router.post('/resetUser', async (req, res) => {
+  try {
+    const user = await User.findOne({ uuid : req.body.uuid })
+    user.estimatedBias = 2;
+    const updatedUser = await user.save()
+    res.send(updatedUser);
+  } catch ( e ) {
+    res.status(400)
+    res.send({error : 'something went wrong, check params', params : req.body})
+  }
+})
+
+
 
 module.exports = router;
