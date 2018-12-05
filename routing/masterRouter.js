@@ -208,6 +208,7 @@ router.post('/getUser', async (req, res) => {
   }
 })
 
+<<<<<<< HEAD
 router.post('/game/badArticle', async(req, res) => {
   try {
     const article = await Article.findById(req.body.articleId).exec()
@@ -220,6 +221,15 @@ router.post('/game/badArticle', async(req, res) => {
       await newBadArticle.save()
     }
     res.send({success : true})
+=======
+router.post('/resetUser', async (req, res) => {
+  try {
+    const user = await User.findOne({ uuid : req.body.uuid })
+    user.estimatedBias = 2;
+    user.articles = []
+    const updatedUser = await user.save()
+    res.send(updatedUser);
+>>>>>>> 3aca7b8ccb5827eb2728da5fd2297e3cff8a37f9
   } catch ( e ) {
     res.status(400)
     res.send({error : 'something went wrong, check params', params : req.body})
