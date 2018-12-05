@@ -26,7 +26,8 @@ const articleSchema = mongoose.Schema({
   },
   score : {},
   topicScores : {},
-  topic : { type : String, required : false }
+  topic : { type : String, required : false },
+  goodGameArticle : { type : Boolean }
 
 })
 

@@ -7,7 +7,6 @@ const helpers = require('../logic/helpers');
 const consumptionFolder = './data/filteredJson/';
 const moment = require('moment')
 const Article = require('../db/article');
-const BadArticle = require('../db/badArticle');
 const User = require('../db/user');
 const shortid = require('shortid')
 
@@ -208,29 +207,14 @@ router.post('/getUser', async (req, res) => {
   }
 })
 
-<<<<<<< HEAD
-router.post('/game/badArticle', async(req, res) => {
+router.post('/game/goodArticle', async(req, res) => {
   try {
-    const article = await Article.findById(req.body.articleId).exec()
-    const alreadyBad = await BadArticle.findOne({ filename : article.filename })
-    if ( alreadyBad ) {
-      alreadyBad.badness++
-      await alreadyBad.save()
-    } else {
-      const newBadArticle = new BadArticle(article)
-      await newBadArticle.save()
-    }
+    const article = await Article.findOne({ _id : req.body.articleId}).exec()
+    article.goodGameArticle = false;
+    article.save()
     res.send({success : true})
-=======
-router.post('/resetUser', async (req, res) => {
-  try {
-    const user = await User.findOne({ uuid : req.body.uuid })
-    user.estimatedBias = 2;
-    user.articles = []
-    const updatedUser = await user.save()
-    res.send(updatedUser);
->>>>>>> 3aca7b8ccb5827eb2728da5fd2297e3cff8a37f9
   } catch ( e ) {
+    console.log(e)
     res.status(400)
     res.send({error : 'something went wrong, check params', params : req.body})
   }
@@ -238,41 +222,39 @@ router.post('/resetUser', async (req, res) => {
 
 router.post('/game/getArticles', async(req, res) => {
   const mehTopics = ['technology', 'entertainment' ]
-  const badArticles = await BadArticle.find({}).select('_id').exec()
-  const badArticleIds = badArticles.map( ba => ba._id);
-
+  const mehSources = ["theblaze.com"]
   const newUser = await createNewUser( shortid.generate() );
   const truncate = (articles) => articles.map( a => { return {
     _id : a._id,
     source_domain : a.source_domain,
     title : a.title,
+    text : a.text.substring(0,50),
     polarity : a.polarityScore.allSidesBias,
     topic : a.topic,
     date_publish : a.date_publish,
     url : a.url,
     image_url : a.image_url
   }})
-  const skip = helpers.getRandomInt(2000);
-  const right = await Article.find({
-    _id : { $nin : badArticleIds },
-    'polarityScore.allSidesBias' : { $in : ['right', 'right-center'] } , 'topic' : { $nin : mehTopics }
+  const skip = 100;
+  const articles = await Article.find({
+    source_domain : { $nin : mehSources },
+    'polarityScore.allSidesBias' : { $in : ['right', 'right-center', 'left', 'left-center'] } ,
+    'topic' : { $nin : mehTopics },
+    goodGameArticle : true
    })
-  .select('-text')
   .sort({ 'score.weightedScore' : -1 })
-  .skip(skip)
-  .limit(50)
+  // .skip(skip)
+  .limit(200)
   .exec()
-  const left = await Article.find({
-    _id : { $nin : badArticleIds },
-    'polarityScore.allSidesBias' : { $in : ['left', 'left-center'] }, 'topic' : { $nin : mehTopics },
-   })
-  .select('-text')
-  .sort({ 'score.weightedScore' : -1 })
-  .skip(skip)
-  .limit(50)
-  .exec()
+  // const left = await Article.find({
+  //   'polarityScore.allSidesBias' : { $in : ['left', 'left-center'] }, 'topic' : { $nin : mehTopics },
+  //  })
+  // .sort({ 'score.weightedScore' : -1 })
+  // // .skip(skip)
+  // .limit(50)
+  // .exec()
 
-  const allArticles = truncate( shuffle( right.concat(left) ) )
+  const allArticles = truncate( shuffle( articles) )
   res.send({ articles : allArticles, user : newUser})
 })
 
@@ -297,7 +279,7 @@ router.post('/game/userAge', async(req, res) => {
   try {
     const { age, userId } = req.body;
     const user = await User.findById(userId).exec()
-    user.age = age;
+    user.age = age
     await user.save()
     res.send({success : true})
   } catch ( e ) {

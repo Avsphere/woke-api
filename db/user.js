@@ -13,7 +13,8 @@ const userSchema = mongoose.Schema({
     articleId : { type : ObjectId, ref : 'Article' }
   }],
   estimatedBias : { type : Number, default : 2 },
-  status : { type : String }
+  age : { type : String },
+  score : { type : Number }
 })
 
 
@@ -63,15 +64,13 @@ userSchema.methods.getArticles = async function(options) {
     const rightCenter = await Article.find({ 'polarityScore.allSidesBias' : 'right-center', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.floor(collectionSize/3) ).exec()
     const right = await Article.find({ 'polarityScore.allSidesBias' : 'right', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(collectionSize/6) ).exec()
     const left = await Article.find({ 'polarityScore.allSidesBias' : 'left', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(collectionSize/6) ).exec()
-    const center = await Article.find({ 'polarityScore.allSidesBias' : 'center', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(collectionSize/6) ).exec()
-    variationArticles = leftCenter.concat(rightCenter).concat(right).concat(left).concat(center)
+    variationArticles = leftCenter.concat(rightCenter).concat(right).concat(left)
   } else {
     matchingArticles = await Article.find({ 'polarityScore.allSidesBias' : articlesPolarity, 'topic' : topic, _id : { $nin : this.articles } }).limit( matchingCount ).exec()
-    variationArticles = await Article.find({ 'polarityScore.allSidesBias' : variationPolarity, 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.floor(notMatchingCount * .6) ).exec()
-    const center = await Article.find({ 'polarityScore.allSidesBias' : 'center', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.floor(notMatchingCount * .2) ).exec()
+    variationArticles = await Article.find({ 'polarityScore.allSidesBias' : variationPolarity, 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.floor(notMatchingCount * .8) ).exec()
     const right = await Article.find({ 'polarityScore.allSidesBias' : 'right', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(notMatchingCount * .1) + 1 ).exec() //always give some farther articles
     const left = await Article.find({ 'polarityScore.allSidesBias' : 'left', 'topic' : topic, _id : { $nin : this.articles } }).limit( Math.ceil(notMatchingCount * .1) + 1 ).exec()
-    variationArticles = variationArticles.concat(right).concat(left).concat(center)
+    variationArticles = variationArticles.concat(right).concat(left)
   }
   return matchingArticles.concat(variationArticles)
 }
