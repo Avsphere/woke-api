@@ -24,7 +24,8 @@ const build_next = (articles, user) => {
       'https://www.washingtonpost.com/resizer/2CjPNwqvXHPS_2RpuRTKY-p3eVo=/1484x0/www.washingtonpost.com/pb/resources/img/twp-social-share.png',
       'https://mediadc.brightspotcdn.com/dims4/default/488c005/2147483647/strip/true/crop/1200x630+0+0/resize/1200x630!/quality/90/?url=https%3A%2F%2Fmediadc.brightspotcdn.com%2Fd7%2F10%2F221ad6ff40c98fbaa81b2c33bf58%2Fwex-logo-1200x630-08-18.png',
       'https://media.arkansasonline.com/static/ao_redesign/graphics/adgog.jpg',
-      'https://www.americanthinker.com/assets/images/at-painter-og-image.png'
+      'https://www.americanthinker.com/assets/images/at-painter-og-image.png',
+      'https://mediadc.brightspotcdn.com/dims4/default/821da43/2147483647/strip/true/crop/800x420+0+90/resize/1200x630!/quality/90/?url=https%3A%2F%2Fmediadc.brightspotcdn.com%2F5c%2Feb%2F9e2a89f73c5f80e751a07ee6460a%2F8772f283e1f4ecbc32fda08c0c397bac.jpg',
     ]
     const buildCardHtml = (article) => {
       let articleImage = article.image_url;
@@ -32,7 +33,7 @@ const build_next = (articles, user) => {
         articleImage = '/media/woke_logo.png';
       }
       return `<div class="card" data-articleId=${article._id}>
-        <img class="card-img-top" src="${articleImage}" onerror="this.src='/media/woke_logo.png'" max-height: 800px; style="width:100%; display: block; ">
+        <img class="card-img-top" src="${articleImage}" onerror="this.src='/media/woke_logo.png'" style="width:100%; display: block; ">
         <div class="card-body">
           <h5 class="card-title">${article.title}</h5>
           <p class="card-text">${article.text}...</p>

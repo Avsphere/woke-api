@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  .titleBlock(style="text-align:center;margin-top:5%")
+  .titleBlock(style="text-align:center;margin-top:3%")
     h1 #Woke - The game
-    .subtitle(style="margin-top:5%")
+    .subtitle(style="margin-top:1%")
       h5 Think you are #woke eh? Then you should have no trouble sniffing out the bias of these articles from just the title, image, and the first few words!
       h6 This is a contest between millennials and old people so do your best.
     h6#score Current Score : 0
-    .container(style="margin-top:5%; max-width:80%")
+    .container(style="margin-top:2%; max-width:80%")
       .row#ageRow 
         .col
           #young.button.btn.btn-light.btn-lg.btn-block(type='button', style='margin-top:4% ')  I'm young ( Under 30 )
@@ -15,5 +15,6 @@ block content
           #old.button.btn.btn-light.btn-lg.btn-block(type='button', style='margin-top:4% ')  I'm old ( Over 30 )
       .game-zone
         .card-container
+      .filler(style="height:500px")
       //- .good
         //- #goodArticle.button.btn.btn-light.btn-lg.btn-block(type='button', style='margin-top:4% ')  Good Article

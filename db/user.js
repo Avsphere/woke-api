@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
   }],
   guesses : [{
     biasGuess :  { type: String },
-    articleId : { type : ObjectId, ref : 'Article' }
+    articleId : { type : ObjectId, ref : 'Article' },
+    guessTime : { type : Date, default : Date.now() }
   }],
   estimatedBias : { type : Number, default : 2 },
   age : { type : String },
