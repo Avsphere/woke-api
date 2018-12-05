@@ -7,7 +7,9 @@ const helpers = require('../logic/helpers');
 const consumptionFolder = './data/filteredJson/';
 const moment = require('moment')
 const Article = require('../db/article');
+const BadArticle = require('../db/badArticle');
 const User = require('../db/user');
+const shortid = require('shortid')
 
 const createNewUser = async (uuid) => {
   try {
@@ -30,6 +32,9 @@ const shuffle = (a) => {
 
 router.get('/', async (req, res) => {
   res.render('index', { fileNames : []})
+})
+router.get('/game', async (req, res) => {
+  res.render('game')
 })
 
 
@@ -178,7 +183,6 @@ router.get('/getTopics', (req, res) => {
   })
 })
 
-
 router.post('/getArticle', async (req, res) => {
   try {
     let article = {}
@@ -201,6 +205,95 @@ router.post('/getUser', async (req, res) => {
   } catch ( e ) {
     res.status(400)
     res.send({error : 'something went wrong, check params', params : req.body})
+  }
+})
+
+router.post('/game/badArticle', async(req, res) => {
+  try {
+    const article = await Article.findById(req.body.articleId).exec()
+    const alreadyBad = await BadArticle.findOne({ filename : article.filename })
+    if ( alreadyBad ) {
+      alreadyBad.badness++
+      await alreadyBad.save()
+    } else {
+      const newBadArticle = new BadArticle(article)
+      await newBadArticle.save()
+    }
+    res.send({success : true})
+  } catch ( e ) {
+    res.status(400)
+    res.send({error : 'something went wrong, check params', params : req.body})
+  }
+})
+
+router.post('/game/getArticles', async(req, res) => {
+  const mehTopics = ['technology', 'entertainment' ]
+  const badArticles = await BadArticle.find({}).select('_id').exec()
+  const badArticleIds = badArticles.map( ba => ba._id);
+
+  const newUser = await createNewUser( shortid.generate() );
+  const truncate = (articles) => articles.map( a => { return {
+    _id : a._id,
+    source_domain : a.source_domain,
+    title : a.title,
+    polarity : a.polarityScore.allSidesBias,
+    topic : a.topic,
+    date_publish : a.date_publish,
+    url : a.url,
+    image_url : a.image_url
+  }})
+  const skip = helpers.getRandomInt(2000);
+  const right = await Article.find({
+    _id : { $nin : badArticleIds },
+    'polarityScore.allSidesBias' : { $in : ['right', 'right-center'] } , 'topic' : { $nin : mehTopics }
+   })
+  .select('-text')
+  .sort({ 'score.weightedScore' : -1 })
+  .skip(skip)
+  .limit(50)
+  .exec()
+  const left = await Article.find({
+    _id : { $nin : badArticleIds },
+    'polarityScore.allSidesBias' : { $in : ['left', 'left-center'] }, 'topic' : { $nin : mehTopics },
+   })
+  .select('-text')
+  .sort({ 'score.weightedScore' : -1 })
+  .skip(skip)
+  .limit(50)
+  .exec()
+
+  const allArticles = truncate( shuffle( right.concat(left) ) )
+  res.send({ articles : allArticles, user : newUser})
+})
+
+router.post('/game/guess', async(req, res) => {
+  try {
+    const { uuid, guess } = req.body;
+    const user = await User.findOne({ uuid : uuid })
+    user.guesses.push({
+      biasGuess : guess.biasGuess,
+      articleId : guess.articleId
+    })
+    await user.save()
+    res.send({success : true})
+  } catch ( e ) {
+    console.error(e)
+    res.status(400)
+    res.send({error : 'Hmmm something went wrong... Suspicious..'})
+  }
+})
+
+router.post('/game/userAge', async(req, res) => {
+  try {
+    const { age, userId } = req.body;
+    const user = await User.findById(userId).exec()
+    user.age = age;
+    await user.save()
+    res.send({success : true})
+  } catch ( e ) {
+    console.error(e)
+    res.status(400)
+    res.send({error : 'Hmmm something went wrong... Suspicious..'})
   }
 })
 

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .titleBlock(style="text-align:center;margin-top:5%")
+    h1 Woke - The game
+    h6 Think you are #woke eh? Then you should have no trouble sniffing out the bias of these articles from just the title and image!
+    h6 This is a contest between millennials and old people so do your best.
+    h6#score Current Score : 0
+    .container(style="margin-top:5%; max-width:80%")
+      .row#ageRow 
+        .col
+          #young.button.btn.btn-light.btn-lg.btn-block(type='button', style='margin-top:4% ')  I'm young and hip! ( Under 30 )
+        .col
+          #old.button.btn.btn-light.btn-lg.btn-block(type='button', style='margin-top:4% ')  I'm old ( Over 30 )
+      .game-zone
+        .card-container
+      .badArticle
+        .button.btn.btn-light.btn-lg.btn-block(type='button', style='margin-top:4% ')  Bad Article! Give me another! 

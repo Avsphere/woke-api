@@ -1,8 +1,7 @@
 import $ from 'jquery';
-import 'popper.js';
-import 'bootstrap'
 import axios from 'axios'
 import '../css/style.css';
+import game from './game.js'
 
 
 function downloadObjectAsJson(exportObj, exportName) {
@@ -27,3 +26,9 @@ $('a').on('click', function(eve) {
   })
   .catch( e => console.error(e) )
 })
+
+
+
+if ( window.location.pathname.includes('game')  ) {
+  game.start()
+}

@@ -1,9 +1,7 @@
 const path = require('path');
 const webpack = require('webpack')
 module.exports = {
-  entry: {
-    path: path.join(__dirname, 'src/js/main.js'),
-  },
+  entry: [path.join(__dirname, 'node_modules/babel-polyfill'), path.join(__dirname, 'src/js/main.js')],
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   output: {
     path: path.resolve(__dirname, 'public/js'),

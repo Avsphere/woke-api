@@ -8,7 +8,12 @@ const userSchema = mongoose.Schema({
     type: ObjectId,
     ref : 'Article'
   }],
-  estimatedBias : { type : Number, default : 2 }
+  guesses : [{
+    biasGuess :  { type: String },
+    articleId : { type : ObjectId, ref : 'Article' }
+  }],
+  estimatedBias : { type : Number, default : 2 },
+  status : { type : String }
 })
 
 
@@ -50,7 +55,7 @@ userSchema.methods.getArticles = async function(options) {
   }
   const matchingCount = Math.floor( matchingProportion*collectionSize)
   const notMatchingCount = Math.ceil( (1-matchingProportion)*collectionSize )
-  console.log(articlesPolarity, variationPolarity, matchingCount, notMatchingCount)
+  console.log(usersEstimatedBias, articlesPolarity, variationPolarity, matchingCount, notMatchingCount)
   let matchingArticles = []
   let variationArticles = []
   if ( usersEstimatedBias == 2) {
